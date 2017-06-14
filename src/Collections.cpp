@@ -2,6 +2,18 @@
 #include <iostream>
 #include "Person.h"
 #include <map>
+#include <algorithm>
+
+void print(int i)
+{
+    std::cout << i << " ";
+}
+
+bool odd(int i)
+{
+    return i%2;
+}
+
 int main(int argc, char** argv) 
 {    
     std::vector<int> v;
@@ -56,6 +68,31 @@ int main(int argc, char** argv)
 
     std::cout << std::endl << "-----------------------" << std::endl;
 
+    std::cout << "contents of v: ";
+    std::for_each(v.begin(),v.end(),print);
+
+    std::cout << std::endl;
+
+    std::cout << "odd elements of v: ";
+    auto o = find_if(v.begin(),v.end(),odd);
+    while(o != v.end())
+    {
+        std::cout << *o  << " ";
+        o = find_if(++o,v.end(),odd);
+    }
+    std::cout << std::endl;
+
+    std::cout << "content of v: ";
+    std::sort(v.begin(),v.end());
+    std::for_each(v.begin(),v.end(),print);
+
+    std::cout << std::endl << "------------------------" << std::endl;
+
+    int length = third.GetName().size();
+    std::string firstfour = third.GetName().substr(0,4);
+    std::cout << length << " " << firstfour;
+
+    std::cout << std::endl;
 
     return 0;
 }
